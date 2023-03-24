@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+}
+
+group 'ru.marshenina'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    implementation 'org.jetbrains:annotations:20.1.0'
+    testImplementation (
+            "com.codeborne:selenide:6.12.3",
+            "com.github.javafaker:javafaker:1.0.2",
+            "org.junit.jupiter:junit-jupiter:5.9.2",
+            "org.slf4j:slf4j-simple:2.0.6"
+    )
+    testRuntimeOnly(
+            "org.slf4j:slf4j-simple:2.0.3",
+            "org.junit.jupiter:junit-jupiter-engine:5.9.1")
+
+}
+
+test {
+    systemProperties += System.properties
+    systemProperty "chromeoptions.prefs", "intl.accept_languages=en"
+    useJUnitPlatform()
+}
